@@ -37,8 +37,10 @@
       <button @click="shareClick" class="submit">{{ this.share_text }}</button>
     </div>
     <img id="map" :src="`/maps/${map}.webp`" hidden="true" />
-    <p>DEBUG X:{{ this.click_debug_x }}</p>
-    <p>DEBUG Y:{{ this.click_debug_y }}</p>
+    <div>
+      <p>DEBUG X:{{ this.click_debug_x }}</p>
+      <p>DEBUG Y:{{ this.click_debug_y }}</p>
+    </div>
   </div>
 </template>
 
