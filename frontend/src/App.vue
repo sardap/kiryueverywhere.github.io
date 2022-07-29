@@ -41,9 +41,6 @@ function getGameNumber() {
   },
   data() {
     const game_number = getGameNumber();
-    console.log(
-      `GameNumber:${game_number} Length:${Object.keys(games).length}`
-    );
     return {
       active_game: game_number,
       game_found: Object.keys(games).length >= game_number,

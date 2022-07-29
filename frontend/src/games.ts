@@ -20,7 +20,15 @@ export const map_info: Record<string, mapInfo> = {
     "yakuza_kwamai_map": {
         threshold: 5,
         game_name: "Yakuza Kiwami"
-    }
+    },
+    "yakuza_0_kamuro_map": {
+        threshold: 5,
+        game_name: "Yakuza 0"
+    },
+    "yakuza_0_osaka_map": {
+        threshold: 5,
+        game_name: "Yakuza 0"
+    },
 
 }
 
@@ -37,5 +45,10 @@ export const games: Record<number, gameInfo> = {
     2: {
         map: "yakuza_kwamai_map",
         target: { x: 16, y: 46 }
+    },
+    3: {
+        map: "yakuza_0_osaka_map",
+        target: { x: 21, y: -29 }
     }
+
 }
