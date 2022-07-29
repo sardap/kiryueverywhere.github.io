@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <img
-      :src="`/pictures/games/${number}/${active_pic}.webp`"
+      :src="require(`@/assets/pictures/games/${number}/${active_pic}.webp`)"
       class="game_pic"
     />
     <br />
@@ -17,10 +17,12 @@
       <h3>{{ guessesLeftCount() }} GUESSES LEFT</h3>
     </div>
     <div v-if="this.state == `win`">
-      <h3>YOU WON WITH {{ guessesLeftCount() }} GUESSES LEFT</h3>
+      <h2>YOU WON</h2>
+      <h3>WITH {{ guessesLeftCount() }} GUESSES LEFT</h3>
     </div>
     <div v-if="this.state == `lose`">
-      <h3>YOU LOST</h3>
+      <h2>YOU LOST</h2>
+      <h3>TRY AGAIN TOMORROW!</h3>
     </div>
     <br />
     <canvas id="canvas" v-on:click="canvasClick" />
@@ -36,7 +38,7 @@
     <div v-else>
       <button @click="shareClick" class="submit">{{ this.share_text }}</button>
     </div>
-    <img id="map" :src="`/maps/${map}.webp`" hidden="true" />
+    <img id="map" :src="require(`@/assets/maps/${map}.webp`)" hidden="true" />
     <div>
       <p>DEBUG X:{{ this.click_debug_x }}</p>
       <p>DEBUG Y:{{ this.click_debug_y }}</p>
