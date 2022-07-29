@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - 'main'
+      - '!main'
 permissions:
   contents: write
 jobs:
@@ -19,4 +19,4 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: frontend/dist # The folder the action should deploy.
+          folder: frontend/dist
