@@ -47,7 +47,7 @@
       :src="`${this.public_path}images/blad_kiryu.webp`"
       hidden="true"
     />
-    <div>
+    <div v-if="debug_mode">
       <p>DEBUG X:{{ this.click_debug_x }}</p>
       <p>DEBUG Y:{{ this.click_debug_y }}</p>
     </div>
@@ -69,6 +69,7 @@ const pic_count = 4;
       y: Number,
     },
     threshold: Number,
+    debug_mode: Boolean,
   },
   data() {
     return {
@@ -263,6 +264,8 @@ const pic_count = 4;
       const canvas_width = ctx.canvas.width;
       const canvas_height = ctx.canvas.height;
 
+      ctx.clearRect(0, 0, canvas_width, canvas_height);
+
       const image = document.getElementById("map") as HTMLImageElement;
       const ratio = Math.min(
         canvas_width / image.width,
@@ -352,6 +355,7 @@ export default class Game extends Vue {
   number!: number;
   target!: position;
   threshold!: number;
+  debug_mode!: boolean;
 }
 </script>
 

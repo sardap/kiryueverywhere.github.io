@@ -9,6 +9,7 @@
         :number="this.active_game"
         :threshold="getThreshold()"
         :target="getTarget()"
+        :debug_mode="this.debug_mode"
       />
       <h3>THIS HAS NOTHING TO DO WITH SEGA</h3>
       <h3>MADE BY <a href="paul@sarda.dev">paul@sarda.dev</a></h3>
@@ -19,13 +20,24 @@
         tell him he forgot to update the site.
       </h2>
     </div>
+    <div>
+      <input type="checkbox" id="debug_checkbox" v-model="debug_mode" />
+      <label for="debug_checkbox">Debug Mode: {{ debug_mode }}</label>
+    </div>
+    <div v-if="debug_mode">
+      <p>Select location</p>
+      <input v-model="active_game" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Game from "./components/Game.vue";
-import { map_info, games, first_date } from "./games";
+import { games } from "./games";
+import { map_info } from "./maps";
+
+export const first_date = new Date(2022, 6, 28, 0, 0, 0);
 
 function getGameNumber() {
   let today = new Date();
@@ -42,6 +54,7 @@ function getGameNumber() {
   data() {
     const game_number = getGameNumber();
     return {
+      debug_mode: false,
       active_game: game_number,
       game_found: Object.keys(games).length >= game_number,
     };
