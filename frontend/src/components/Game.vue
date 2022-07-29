@@ -16,13 +16,16 @@
     <div v-if="this.state == `playing`">
       <h3>{{ guessesLeftCount() }} GUESSES LEFT</h3>
     </div>
-    <div v-if="this.state == `win`">
-      <h2>YOU WON</h2>
-      <h3>WITH {{ guessesLeftCount() }} GUESSES LEFT</h3>
-    </div>
-    <div v-if="this.state == `lose`">
-      <h2>YOU LOST</h2>
-      <h3>TRY AGAIN TOMORROW!</h3>
+    <div v-else>
+      <div v-if="this.state == `win`">
+        <h2>YOU WON</h2>
+        <h3>WITH {{ guessesLeftCount() }} GUESSES LEFT</h3>
+      </div>
+      <div v-if="this.state == `lose`">
+        <h2>YOU LOST</h2>
+        <h3>TRY AGAIN TOMORROW!</h3>
+      </div>
+      <h3>NEXT LOCATION IN {{ countdownUntilTomorrow }}</h3>
     </div>
     <br />
     <canvas id="canvas" v-on:click="canvasClick" />
@@ -85,22 +88,49 @@ const pic_count = 4;
       click_debug_y: null,
       canvas_init: false,
       public_path: process.env.BASE_URL,
+      countdownUntilTomorrow: ``,
+      countdownUntilTomorrowTimer: null,
     };
   },
   mounted() {
-    console.log(`Active NUmber${this.number}`);
-
     var c = document.getElementById("canvas") as any;
     this.canvas = c.getContext("2d");
 
     this.timer = setInterval(() => {
       this.draw();
     }, 250);
+
+    this.countdownUntilTomorrowTimer = setInterval(() => {
+      this.countdownUntilTomorrow = this.countDownUntilNextLocation();
+    }, 1000);
   },
   beforeDestroy() {
     clearInterval(this.timer);
+    clearInterval(this.countdownUntilTomorrowTimer);
   },
   methods: {
+    countDownUntilNextLocation() {
+      let today = new Date();
+      const tomorrow = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        0,
+        0,
+        0
+      );
+      tomorrow.setTime(tomorrow.getTime() + 24 * 60 * 60 * 1000);
+      const dist = tomorrow.getTime() - today.getTime();
+      const hours = Math.floor(
+        (dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((dist % (1000 * 60)) / 1000);
+
+      return `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    },
     guessesLeftCount() {
       return pic_count + 1 - this.guesses.length;
     },

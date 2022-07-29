@@ -25,15 +25,14 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Game from "./components/Game.vue";
-import { map_info, games } from "./games";
-
-const first_date = new Date("2022-07-28");
+import { map_info, games, first_date } from "./games";
 
 function getGameNumber() {
   let today = new Date();
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   const l = today.getTime();
   const r = first_date.getTime();
-  return Math.round((l - r) / (1000 * 60 * 60 * 24));
+  return Math.floor(Math.abs((l - r) / oneDay));
 }
 
 @Options({

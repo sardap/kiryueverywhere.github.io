@@ -1,4 +1,7 @@
 
+export const first_date = new Date(2022, 6, 28, 0, 0, 0);
+
+
 export interface position {
     x: number,
     y: number,
