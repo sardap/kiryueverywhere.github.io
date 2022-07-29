@@ -1,15 +1,24 @@
 <template>
   <div>
     <h2>🗺️ KIRYU EVERYWHERE! 🗺️</h2>
-    <h3>LOCATION #{{ this.active_game }}</h3>
-    <Game
-      :map="getMap()"
-      :number="this.active_game"
-      :threshold="getThreshold()"
-      :target="getTarget()"
-    />
-    <h3>This has nothing to do with SEGA</h3>
-    <h3>made by paul@sarda.dev</h3>
+    <div v-if="this.game_found">
+      <h3>LOCATION #{{ this.active_game }}</h3>
+      <p>{{ getGameName().toUpperCase() }}</p>
+      <Game
+        :map="getMap()"
+        :number="this.active_game"
+        :threshold="getThreshold()"
+        :target="getTarget()"
+      />
+      <h3>THIS HAS NOTHING TO DO WITH SEGA</h3>
+      <h3>MADE BY <a href="paul@sarda.dev">paul@sarda.dev</a></h3>
+    </div>
+    <div v-else>
+      <h2 class="emergency_font">
+        This is bad please email <a href="paul@sarda.dev">paul@sarda.dev</a> and
+        tell him he forgot to update the site.
+      </h2>
+    </div>
   </div>
 </template>
 
@@ -32,21 +41,26 @@ function getGameNumber() {
     Game,
   },
   data() {
+    const game_number = getGameNumber();
+    console.log(
+      `GameNumber:${game_number} Length:${Object.keys(games).length}`
+    );
     return {
-      active_game: getGameNumber(),
+      active_game: game_number,
+      game_found: Object.keys(games).length >= game_number,
     };
   },
   methods: {
     getMap() {
-      console.log(this.active_game);
       return games[this.active_game].map;
     },
     getTarget() {
-      console.log(this.active_game);
       return games[this.active_game].target;
     },
+    getGameName() {
+      return map_info[games[this.active_game].map].game_name;
+    },
     getThreshold() {
-      console.log(this.active_game);
       return map_info[games[this.active_game].map].threshold;
     },
   },
@@ -66,7 +80,15 @@ export default class App extends Vue {}
   margin-top: 10px;
 }
 
+a {
+  color: lightgray;
+}
+
 body {
   background-color: #5c5c5c;
+}
+
+.emergency_font {
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>

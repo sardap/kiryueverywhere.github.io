@@ -1,4 +1,4 @@
-# kurdle
+# kiryueverywhere
 
 ## Project setup
 ```

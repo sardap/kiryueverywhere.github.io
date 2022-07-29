@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <img
-      :src="`${public_path}pictures/games/${number}/${active_pic}.webp`"
+      :src="`${public_path}images/games/${number}/${active_pic}.webp`"
       class="game_pic"
     />
     <br />
@@ -39,6 +39,11 @@
       <button @click="shareClick" class="submit">{{ this.share_text }}</button>
     </div>
     <img id="map" :src="`${public_path}maps/${map}.webp`" hidden="true" />
+    <img
+      id="target_icon"
+      :src="`${this.public_path}images/blad_kiryu.webp`"
+      hidden="true"
+    />
     <div>
       <p>DEBUG X:{{ this.click_debug_x }}</p>
       <p>DEBUG Y:{{ this.click_debug_y }}</p>
@@ -83,6 +88,8 @@ const pic_count = 4;
     };
   },
   mounted() {
+    console.log(`Active NUmber${this.number}`);
+
     var c = document.getElementById("canvas") as any;
     this.canvas = c.getContext("2d");
 
@@ -124,24 +131,41 @@ const pic_count = 4;
       return "game_btn_inactive";
     },
     posAsPercent(pos: position): position {
-      const image = document.getElementById("map") as HTMLImageElement;
       return {
         x: ((pos.x - this.center_x) / this.image_width) * 100,
         y: ((pos.y - this.center_y) / this.image_height) * 100,
       };
     },
+    correctGuess(pos: position) {
+      const percent_pos: position = this.posAsPercent({
+        x: pos.x,
+        y: pos.y,
+      });
+      const dist_x = Math.abs(percent_pos.x - this.target.x);
+      const dist_y = Math.abs(percent_pos.y - this.target.y);
+
+      const image = document.getElementById("map") as HTMLImageElement;
+      this.click_debug_x = `px:${percent_pos.x} sx:${this.selected_x} cx:${this.center_x} iw:${image.width}`;
+      this.click_debug_y = `py:${percent_pos.y} sy:${this.selected_y} cy:${this.center_y} ih:${image.height}`;
+
+      return dist_x <= this.threshold && dist_y <= this.threshold;
+    },
     shareClick() {
       let text = `#KIRYU_EVERYWHERE #${this.number}\n\n`;
       text += "🗺️";
-      for (let i = 0; i < this.unlocked_pic - 1; i++) {
-        text += " 🟥";
+      // Fix so uses guess not unlocked pic
+      for (const guess of this.guesses) {
+        if (this.correctGuess(guess)) {
+          text += " 🟩";
+        } else {
+          text += " 🟥";
+        }
       }
-      text += " 🟩";
-      for (let i = 0; i < pic_count - this.unlocked_pic; i++) {
+      for (let i = 0; i < this.guessesLeftCount(); i++) {
         text += " ⬛";
       }
       text += "\n\n";
-      text += "https://kiryueverywhere.github.io";
+      text += "https://sardap.github.io/kiryueverywhere/";
       navigator.clipboard.writeText(text);
       this.share_text = "COPPIED!";
       let share_text_timer = setInterval(() => {
@@ -167,7 +191,7 @@ const pic_count = 4;
       this.click_debug_x = `px:${percent_pos.x} sx:${this.selected_x} cx:${this.center_x} iw:${image.width}`;
       this.click_debug_y = `py:${percent_pos.y} sy:${this.selected_y} cy:${this.center_y} ih:${image.height}`;
 
-      if (dist_x <= this.threshold && dist_y <= this.threshold) {
+      if (this.correctGuess({ x: this.selected_x, y: this.selected_y })) {
         console.log("win!");
         this.state = "win";
       } else if (this.guesses.length + 1 >= pic_count + 1) {
@@ -196,6 +220,11 @@ const pic_count = 4;
       }
       this.selected_x = event.offsetX;
       this.selected_y = event.offsetY;
+      console.log(
+        `target:${this.target.x}, ${this.target.x / 100} ${
+          (this.target.x / 100) * this.image_width + this.center_x
+        } ${((this.target.x + this.center_x) * this.image_width) / 100}`
+      );
       this.draw();
     },
     drawMap() {
@@ -263,6 +292,23 @@ const pic_count = 4;
         ctx.rect(
           this.selected_x - guess_size / 2,
           this.selected_y - guess_size / 2,
+          guess_size,
+          guess_size
+        );
+        ctx.stroke();
+      }
+
+      if (this.state != "playing") {
+        const image = document.getElementById(
+          "target_icon"
+        ) as HTMLImageElement;
+        const x = (this.target.x / 100) * this.image_width + this.center_x;
+        const y = (this.target.y / 100) * this.image_height + this.center_y;
+        ctx.beginPath();
+        ctx.drawImage(
+          image,
+          x - guess_size / 2,
+          y - guess_size / 2,
           guess_size,
           guess_size
         );
