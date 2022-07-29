@@ -8,6 +8,8 @@
       :threshold="getThreshold()"
       :target="getTarget()"
     />
+    <h3>This has nothing to do with SEGA</h3>
+    <h3>made by paul@sarda.dev</h3>
   </div>
 </template>
 

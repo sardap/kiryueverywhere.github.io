@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <img
-      :src="require(`@/assets/pictures/games/${number}/${active_pic}.webp`)"
+      :src="`${public_path}pictures/games/${number}/${active_pic}.webp`"
       class="game_pic"
     />
     <br />
@@ -38,7 +38,7 @@
     <div v-else>
       <button @click="shareClick" class="submit">{{ this.share_text }}</button>
     </div>
-    <img id="map" :src="require(`@/assets/maps/${map}.webp`)" hidden="true" />
+    <img id="map" :src="`${public_path}maps/${map}.webp`" hidden="true" />
     <div>
       <p>DEBUG X:{{ this.click_debug_x }}</p>
       <p>DEBUG Y:{{ this.click_debug_y }}</p>
@@ -79,6 +79,7 @@ const pic_count = 4;
       click_debug_x: null,
       click_debug_y: null,
       canvas_init: false,
+      public_path: process.env.BASE_URL,
     };
   },
   mounted() {
