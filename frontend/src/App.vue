@@ -27,6 +27,11 @@
     <div v-if="debug_mode">
       <p>Select location</p>
       <input v-model="active_game" />
+      <br />
+      <br />
+      <button @click="resetCookie()">Reset Cookie</button>
+      <p>Cookie: {{ this.current_cookie }}</p>
+      <button @click="getCookie()">Update Gotten Cookie</button>
     </div>
   </div>
 </template>
@@ -36,6 +41,7 @@ import { Options, Vue } from "vue-class-component";
 import Game from "./components/Game.vue";
 import { games } from "./games";
 import { map_info } from "./maps";
+import { getGuessHistory, resetCookie } from "./history";
 
 export const first_date = new Date(2022, 6, 28, 0, 0, 0);
 
@@ -55,11 +61,15 @@ function getGameNumber() {
     const game_number = getGameNumber();
     return {
       debug_mode: false,
+      current_cookie: getGuessHistory(document),
       active_game: game_number,
       game_found: Object.keys(games).length >= game_number,
     };
   },
   methods: {
+    resetCookie() {
+      resetCookie(document);
+    },
     getMap() {
       return games[this.active_game].map;
     },

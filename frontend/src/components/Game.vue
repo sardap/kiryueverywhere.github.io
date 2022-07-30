@@ -57,6 +57,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { position } from "../games";
+import { saveGuess } from "../history";
 
 const pic_count = 4;
 
@@ -235,12 +236,23 @@ const pic_count = 4;
           `failure!: dist_x:${dist_x}, dist_y:${dist_y}, dist:${dist} threshold:${this.threshold}`
         );
       }
+
       this.guesses.push({
         x: this.selected_x,
         y: this.selected_y,
         dist_x: dist_x,
         dist_y: dist_y,
       });
+
+      if (this.state != "playing") {
+        saveGuess(
+          document,
+          this.state == "win",
+          this.guesses.length,
+          this.number
+        );
+      }
+
       this.selected_x = null;
       this.selected_y = null;
       this.draw();
