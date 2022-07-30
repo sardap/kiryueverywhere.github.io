@@ -227,7 +227,7 @@ const pic_count = 4;
       // Fix so uses guess not unlocked pic
       const guesses = getGuessesForLocation(document, this.number);
       for (const guess of guesses) {
-        if (this.correctGuess(guess)) {
+        if (guess.final_guess == FinalGuess.Win) {
           text += " 🟩";
         } else {
           text += " 🟥";
