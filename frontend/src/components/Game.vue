@@ -50,7 +50,7 @@
     <br />
     <canvas id="canvas" v-on:click="canvasClick" />
     <br />
-    <div v-if="this.state == `playing`">
+    <div v-if="this.getState() == `playing`">
       <button
         :class="this.selected_x == null ? `submit disabled` : `submit`"
         @click="submitButton"
