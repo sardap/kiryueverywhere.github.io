@@ -7,21 +7,41 @@
     <br />
     <div class="buttons">
       <div>
-        <button @click="showPic(1)" :class="getClass(1)">1</button>
-        <button @click="showPic(2)" :class="getClass(2)">2</button>
-        <button @click="showPic(3)" :class="getClass(3)">3</button>
-        <button @click="showPic(4)" :class="getClass(4)">4</button>
+        <button
+          @click="showLocationImage(1)"
+          :class="getClassForLocationImage(1)"
+        >
+          1
+        </button>
+        <button
+          @click="showLocationImage(2)"
+          :class="getClassForLocationImage(2)"
+        >
+          2
+        </button>
+        <button
+          @click="showLocationImage(3)"
+          :class="getClassForLocationImage(3)"
+        >
+          3
+        </button>
+        <button
+          @click="showLocationImage(4)"
+          :class="getClassForLocationImage(4)"
+        >
+          4
+        </button>
       </div>
     </div>
-    <div v-if="this.state == `playing`">
+    <div v-if="this.getState() == `playing`">
       <h3>{{ guessesLeftCount() }} GUESSES LEFT</h3>
     </div>
     <div v-else>
-      <div v-if="this.state == `win`">
+      <div v-if="this.getState() == `win`">
         <h2>YOU WON</h2>
         <h3>WITH {{ guessesLeftCount() }} GUESSES LEFT</h3>
       </div>
-      <div v-if="this.state == `lose`">
+      <div v-if="this.getState() == `lose`">
         <h2>YOU LOST</h2>
         <h3>TRY AGAIN TOMORROW!</h3>
       </div>
@@ -57,7 +77,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { position } from "../games";
-import { saveGuess } from "../history";
+import { FinalGuess, saveGuess, getGuessesForLocation } from "../history";
 
 const pic_count = 4;
 
@@ -71,11 +91,11 @@ const pic_count = 4;
     },
     threshold: Number,
     debug_mode: Boolean,
+    on_complete: Function,
   },
   data() {
     return {
       active_pic: 1,
-      unlocked_pic: 1,
       canvas: null,
       selected_x: null,
       selected_y: null,
@@ -95,7 +115,7 @@ const pic_count = 4;
     };
   },
   mounted() {
-    var c = document.getElementById("canvas") as any;
+    var c = document.getElementById("canvas") as HTMLCanvasElement;
     this.canvas = c.getContext("2d");
 
     this.timer = setInterval(() => {
@@ -133,34 +153,53 @@ const pic_count = 4;
         .toString()
         .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     },
-    guessesLeftCount() {
-      return pic_count + 1 - this.guesses.length;
+    getState() {
+      const guesses = getGuessesForLocation(document, this.number);
+      for (const guess of guesses) {
+        if (guess.final_guess == FinalGuess.Win) {
+          return "win";
+        } else if (guess.final_guess == FinalGuess.Lose) {
+          return "lose";
+        }
+      }
+
+      return "playing";
     },
-    showPic(num: number) {
-      if (num <= this.unlocked_pic || this.state != "playing") {
+    guessesLeftCount() {
+      return pic_count - getGuessesForLocation(document, this.number).length;
+    },
+    unlockedImage() {
+      const length = getGuessesForLocation(document, this.number).length + 1;
+      return Math.min(length, pic_count);
+    },
+    showLocationImage(num: number) {
+      if (num <= this.unlockedImage() || this.getState() != "playing") {
         this.active_pic = num;
       }
     },
     unlockNext() {
-      if (this.unlocked_pic + 1 <= pic_count) {
-        this.unlocked_pic++;
-        this.active_pic = this.unlocked_pic;
-      }
+      this.active_pic = Math.min(this.unlockedImage() + 1, pic_count);
     },
-    getClass(num: number) {
+    getClassForLocationImage(num: number) {
       if (this.active_pic == num) {
         return "game_btn_active";
       }
 
-      if (this.unlocked_pic >= num) {
+      if (this.unlockedImage() >= num) {
         return "game_btn_unlocked";
       }
 
-      if (this.state != "playing") {
+      if (this.getState() != "playing") {
         return "game_btn_unlocked_completed";
       }
 
       return "game_btn_inactive";
+    },
+    percentAsPos(x: number, y: number): position {
+      return {
+        x: (x / 100) * this.image_width + this.center_x,
+        y: (y / 100) * this.image_height + this.center_y,
+      };
     },
     posAsPercent(pos: position): position {
       return {
@@ -186,7 +225,8 @@ const pic_count = 4;
       let text = `#KIRYU_EVERYWHERE #${this.number}\n\n`;
       text += "🗺️";
       // Fix so uses guess not unlocked pic
-      for (const guess of this.guesses) {
+      const guesses = getGuessesForLocation(document, this.number);
+      for (const guess of guesses) {
         if (this.correctGuess(guess)) {
           text += " 🟩";
         } else {
@@ -217,57 +257,49 @@ const pic_count = 4;
       console.log(`CLICK ${percent_pos.x}% ${percent_pos.y}%`);
       const dist_x = Math.abs(percent_pos.x - this.target.x);
       const dist_y = Math.abs(percent_pos.y - this.target.y);
-      const dist = dist_x + dist_y;
 
       const image = document.getElementById("map") as HTMLImageElement;
       this.click_debug_x = `px:${percent_pos.x} sx:${this.selected_x} cx:${this.center_x} iw:${image.width}`;
       this.click_debug_y = `py:${percent_pos.y} sy:${this.selected_y} cy:${this.center_y} ih:${image.height}`;
 
+      const guesses_length = getGuessesForLocation(
+        document,
+        this.number
+      ).length;
+
+      let final_guess = FinalGuess.NotFinal;
       if (this.correctGuess({ x: this.selected_x, y: this.selected_y })) {
         console.log("win!");
-        this.state = "win";
-      } else if (this.guesses.length + 1 >= pic_count + 1) {
+        final_guess = FinalGuess.Win;
+      } else if (this.guessesLeftCount() - 1 == 0) {
         console.log("lose!");
-        this.state = "lose";
+        final_guess = FinalGuess.Lose;
       } else {
-        console.log(`unlock next! ${this.guesses.length}`);
+        console.log(`unlock next! ${guesses_length}`);
         this.unlockNext();
         console.log(
-          `failure!: dist_x:${dist_x}, dist_y:${dist_y}, dist:${dist} threshold:${this.threshold}`
+          `failure!: dist_x:${dist_x}, dist_y:${dist_y}, threshold:${this.threshold}`
         );
       }
 
-      this.guesses.push({
-        x: this.selected_x,
-        y: this.selected_y,
-        dist_x: dist_x,
-        dist_y: dist_y,
-      });
-
-      if (this.state != "playing") {
-        saveGuess(
-          document,
-          this.state == "win",
-          this.guesses.length,
-          this.number
-        );
-      }
+      saveGuess(
+        document,
+        this.number,
+        percent_pos.x,
+        percent_pos.y,
+        final_guess
+      );
 
       this.selected_x = null;
       this.selected_y = null;
       this.draw();
     },
     canvasClick(event: any) {
-      if (this.state != "playing") {
+      if (this.getState() != "playing") {
         return;
       }
       this.selected_x = event.offsetX;
       this.selected_y = event.offsetY;
-      console.log(
-        `target:${this.target.x}, ${this.target.x / 100} ${
-          (this.target.x / 100) * this.image_width + this.center_x
-        } ${((this.target.x + this.center_x) * this.image_width) / 100}`
-      );
       this.draw();
     },
     drawMap() {
@@ -307,14 +339,18 @@ const pic_count = 4;
 
       this.drawMap();
 
+      const guesses = getGuessesForLocation(document, this.number);
       const guess_size = ctx.canvas.height * 0.05;
-      for (const guess of this.guesses) {
+      for (const guess of guesses) {
+        const pos = this.percentAsPos(guess.x_per, guess.y_per);
+        const dist_x = Math.abs(guess.x_per - this.target.x);
+        const dist_y = Math.abs(guess.y_per - this.target.y);
         ctx.beginPath();
         let colour = "";
-        if (guess.dist_x <= this.threshold && guess.dist_y <= this.threshold) {
+        if (dist_x <= this.threshold && dist_y <= this.threshold) {
           colour = "green";
         } else {
-          const dist = guess.dist_x + guess.dist_y;
+          const dist = dist_x + dist_y;
           if (dist < this.threshold * 3.5) {
             colour = "#FF0000";
           } else {
@@ -323,8 +359,8 @@ const pic_count = 4;
         }
         ctx.strokeStyle = colour;
         ctx.rect(
-          guess.x - guess_size / 2,
-          guess.y - guess_size / 2,
+          pos.x - guess_size / 2,
+          pos.y - guess_size / 2,
           guess_size,
           guess_size
         );
@@ -343,17 +379,16 @@ const pic_count = 4;
         ctx.stroke();
       }
 
-      if (this.state != "playing") {
+      if (this.getState() != "playing") {
         const image = document.getElementById(
           "target_icon"
         ) as HTMLImageElement;
-        const x = (this.target.x / 100) * this.image_width + this.center_x;
-        const y = (this.target.y / 100) * this.image_height + this.center_y;
+        const pos = this.percentAsPos(this.target.x, this.target.y);
         ctx.beginPath();
         ctx.drawImage(
           image,
-          x - guess_size / 2,
-          y - guess_size / 2,
+          pos.x - guess_size / 2,
+          pos.y - guess_size / 2,
           guess_size,
           guess_size
         );
@@ -368,6 +403,7 @@ export default class Game extends Vue {
   target!: position;
   threshold!: number;
   debug_mode!: boolean;
+  on_complete!: () => void;
 }
 </script>
 
