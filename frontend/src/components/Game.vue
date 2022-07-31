@@ -222,19 +222,23 @@ const pic_count = 4;
       return dist_x <= this.threshold && dist_y <= this.threshold;
     },
     shareClick() {
-      let text = `#KIRYU_EVERYWHERE #${this.number}\n\n`;
-      text += "🗺️";
-      // Fix so uses guess not unlocked pic
+      let text = `#KIRYU_EVERYWHERE #${this.number} 🗺️\n`;
       const guesses = getGuessesForLocation(document, this.number);
-      for (const guess of guesses) {
-        if (guess.final_guess == FinalGuess.Win) {
-          text += " 🟩";
+      for (let i = 0; i < guesses.length; i++) {
+        const dist_x = Math.abs(guesses[i].x_per - this.target.x);
+        const dist_y = Math.abs(guesses[i].y_per - this.target.y);
+        let square: string;
+        if (guesses[i].final_guess == FinalGuess.Win) {
+          square = "🟢";
         } else {
-          text += " 🟥";
+          square = "🔴";
         }
+        text += `\n#${i + 1}\t${square} distance:${(dist_x + dist_y).toFixed(
+          2
+        )}`;
       }
       for (let i = 0; i < this.guessesLeftCount(); i++) {
-        text += " ⬛";
+        text += `\n#${i + 1 + guesses.length}\t⚫`;
       }
       text += "\n\n";
       text += "https://sardap.github.io/kiryueverywhere/";
