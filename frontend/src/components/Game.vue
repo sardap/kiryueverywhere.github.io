@@ -2,7 +2,7 @@
   <div class="game">
     <img
       :src="`${public_path}images/games/${number}/${active_pic}.webp`"
-      class="game_pic"
+      class="game_image"
     />
     <br />
     <div class="buttons">
@@ -47,7 +47,6 @@
       </div>
       <h3>NEXT LOCATION IN {{ countdownUntilTomorrow }}</h3>
     </div>
-    <br />
     <canvas id="canvas" v-on:click="canvasClick" />
     <br />
     <div v-if="this.getState() == `playing`">
@@ -464,10 +463,9 @@ h3 {
   background-color: lightgray;
 }
 
-.game_pic {
-  height: 20vh;
-  border-radius: 25px;
-  background: #73ad21;
+.game_image {
+  height: 22vh;
+  border-radius: 5px;
 }
 
 .game_btn_active {
@@ -493,5 +491,9 @@ h3 {
 .map {
   height: 100%;
   margin-top: 10%;
+}
+
+h3 {
+  margin: 0px;
 }
 </style>
