@@ -14,7 +14,7 @@ export const games: Record<number, gameInfo> = {
     target: { x: -42, y: -17 },
   },
   2: {
-    map: "yakuza_kwamai_map",
+    map: "yakuza_kiwami_map",
     target: { x: 16, y: 46 },
   },
   3: {
@@ -22,7 +22,7 @@ export const games: Record<number, gameInfo> = {
     target: { x: 21, y: -29 },
   },
   4: {
-    map: "yakuza_kwamai_2_osaka_map",
+    map: "yakuza_kiwami_2_osaka_map",
     target: { x: -12, y: -4 },
   },
   5: {
@@ -34,7 +34,11 @@ export const games: Record<number, gameInfo> = {
     target: { x: -38, y: 4 },
   },
   7: {
-    map: "yakuza_kwamai_map",
+    map: "yakuza_kiwami_map",
     target: { x: 2, y: 39 },
   },
+  8: {
+    map: "yakuza_3_kamuro_map",
+    target: { x: -30, y: 23 },
+  }
 };

@@ -24,3 +24,7 @@ pnpm-debug.log*
 random-modding/
 
 dist/
+
+root.png
+root.webp
+info.txt

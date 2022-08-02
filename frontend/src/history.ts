@@ -4,13 +4,13 @@ export enum FinalGuess {
   Lose
 }
 
-interface guessHistoryEntry {
+export interface guessHistoryEntry {
   x_per: number;
   y_per: number;
   final_guess: FinalGuess;
 }
 
-interface guessCookie {
+export interface guessCookie {
   guesses: Record<number, guessHistoryEntry[]>;
 }
 
@@ -33,7 +33,11 @@ function getCookie(document: Document, cname: string) {
 const guesses_cookie_key = "guesses";
 
 export function resetCookie(document: Document): void {
-  document.cookie = "";
+  const d = new Date();
+  d.setTime(d.getTime());
+  const expires = "expires=" + d.toUTCString();
+  document.cookie =
+    guesses_cookie_key + "=" + "{}" + ";" + expires;
 }
 
 export function getGuesses(document: Document): guessCookie {

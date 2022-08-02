@@ -4,14 +4,10 @@
     <div v-if="this.game_found">
       <h3>LOCATION #{{ this.location_number }}</h3>
       <p>{{ getGameName().toUpperCase() }}</p>
-      <Game
-        :map="getMap()"
-        :number="this.location_number"
-        :threshold="getThreshold()"
-        :target="getTarget()"
-        :debug_mode="this.debug_mode"
-        :on_complete="onComplete()"
-      />
+      <Game :map="getMap()" :number="this.location_number" :threshold="getThreshold()" :target="getTarget()"
+        :debug_mode="this.debug_mode" :on_complete="onComplete()" />
+      <br />
+      <button @click="openStats()" class="stats">📈Stats📈</button>
       <h3>THIS HAS NOTHING TO DO WITH SEGA</h3>
       <h3>MADE BY <a href="paul@sarda.dev">paul@sarda.dev</a></h3>
     </div>
@@ -21,6 +17,7 @@
         tell him he forgot to update the site.
       </h2>
     </div>
+    <DialogWrapper />
     <div>
       <input type="checkbox" id="debug_checkbox" v-model="debug_mode" />
       <label for="debug_checkbox">Debug Mode: {{ debug_mode }}</label>
@@ -32,7 +29,6 @@
       <br />
       <button @click="resetCookie()">Reset Cookie</button>
       <p>Cookie: {{ this.current_cookie }}</p>
-      <button @click="getCookie()">Update Gotten Cookie</button>
     </div>
   </div>
 </template>
@@ -43,24 +39,18 @@ import Game from "./components/Game.vue";
 import { games } from "./games";
 import { map_info } from "./maps";
 import { getGuesses, resetCookie } from "./history";
-
-export const first_date = new Date(2022, 6, 28, 0, 0, 0);
-
-function getLocationNumber() {
-  let today = new Date();
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  const l = today.getTime();
-  const r = first_date.getTime();
-  return Math.floor(Math.abs((l - r) / oneDay));
-}
+import { DialogWrapper } from "vue3-promise-dialog";
+import { confirm, getLocationNumber } from "./misc";
 
 @Options({
   components: {
     Game,
+    DialogWrapper,
   },
   data() {
     const location_number = getLocationNumber();
     return {
+      show: false,
       debug_mode: false,
       current_cookie: getGuesses(document),
       location_number: location_number,
@@ -68,6 +58,13 @@ function getLocationNumber() {
     };
   },
   methods: {
+    openStats: async () => {
+      if (await confirm()) {
+        console.log("YES");
+      } else {
+        console.log("NO");
+      }
+    },
     onComplete() {
       console.log("Jobs done");
     },
@@ -88,7 +85,7 @@ function getLocationNumber() {
     },
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue { }
 </script>
 
 <style lang="scss">
@@ -113,5 +110,27 @@ body {
 
 .emergency_font {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.stats {
+  font-family: "Nanum Brush Script", cursive;
+  border: none;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #a8a8a8;
+  font-size: 15px;
+  margin: 4px 2px;
+  border-radius: 8px;
+}
+
+.stats:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 </style>
