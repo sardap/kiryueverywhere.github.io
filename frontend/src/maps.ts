@@ -40,4 +40,19 @@ export const map_info: Record<string, mapInfo> = {
     game_name: "Yakuza 3",
     plain_name: "Yakuza 3 Ryukyu",
   },
+  yakuza_4_kamuro_streets_map: {
+    threshold: 5,
+    game_name: "Yakuza 4",
+    plain_name: "Yakuza 4 Kamurocho Streets",
+  },
+  yakuza_4_kamuro_underground_map: {
+    threshold: 5,
+    game_name: "Yakuza 4",
+    plain_name: "Yakuza 4 Kamurocho Underground",
+  },
+  yakuza_4_kamuro_rooftops_map: {
+    threshold: 5,
+    game_name: "Yakuza 4",
+    plain_name: "Yakuza 4 Kamurocho Rooftops",
+  },
 };

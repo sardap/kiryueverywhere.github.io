@@ -1,11 +1,11 @@
 <template>
   <div>
     <h2>🗺️ KIRYU EVERYWHERE! 🗺️</h2>
-    <div v-if="this.game_found">
-      <h3>LOCATION #{{ this.location_number }}</h3>
+    <div v-if="location_number <= location_count">
+      <h3>LOCATION #{{ location_number }}</h3>
       <p>{{ getGameName().toUpperCase() }}</p>
-      <Game :map="getMap()" :number="this.location_number" :threshold="getThreshold()" :target="getTarget()"
-        :debug_mode="this.debug_mode" :on_complete="onComplete()" />
+      <Game :map="getMap()" :number="location_number" :threshold="getThreshold()" :target="getTarget()"
+        :debug_mode="debug_mode" :on_complete="onComplete()" />
       <br />
       <button @click="openStats()" class="stats">📈Stats📈</button>
       <h3>THIS HAS NOTHING TO DO WITH SEGA</h3>
@@ -28,21 +28,21 @@
       <br />
       <br />
       <button @click="resetCookie()">Reset Cookie</button>
-      <p>Cookie: {{ this.current_cookie }}</p>
+      <p>Cookie: {{ current_cookie }}</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
 import Game from "./components/Game.vue";
 import { games } from "./games";
 import { map_info } from "./maps";
 import { getGuesses, resetCookie } from "./history";
 import { DialogWrapper } from "vue3-promise-dialog";
 import { confirm, getLocationNumber } from "./misc";
+import { defineComponent } from "vue";
 
-@Options({
+export default defineComponent({
   components: {
     Game,
     DialogWrapper,
@@ -54,7 +54,7 @@ import { confirm, getLocationNumber } from "./misc";
       debug_mode: false,
       current_cookie: getGuesses(document),
       location_number: location_number,
-      game_found: Object.keys(games).length >= location_number,
+      location_count: Object.keys(games).length,
     };
   },
   methods: {
@@ -85,7 +85,6 @@ import { confirm, getLocationNumber } from "./misc";
     },
   },
 })
-export default class App extends Vue { }
 </script>
 
 <style lang="scss">
