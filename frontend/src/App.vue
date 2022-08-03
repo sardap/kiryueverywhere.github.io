@@ -18,7 +18,7 @@
       </h2>
     </div>
     <DialogWrapper />
-    <div>
+    <div v-if="dev_possible">
       <input type="checkbox" id="debug_checkbox" v-model="debug_mode" />
       <label for="debug_checkbox">Debug Mode: {{ debug_mode }}</label>
     </div>
@@ -55,6 +55,7 @@ export default defineComponent({
       current_cookie: getGuesses(document),
       location_number: location_number,
       location_count: Object.keys(games).length,
+      dev_possible: process.env.BASE_URL == "/",
     };
   },
   methods: {
