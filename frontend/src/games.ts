@@ -48,5 +48,13 @@ export const games: Record<number, gameInfo> = {
   10: {
     map: "yakuza_kiwami_2_osaka_map",
     target: { x: 38, y: -30 },
+  },
+  11: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -3, y: -13 },
+  },
+  12: {
+    map: "yakuza_3_rykyu_map",
+    target: { x: -12, y: 21 },
   }
 };
