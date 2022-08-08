@@ -18,6 +18,9 @@
       </h2>
     </div>
     <DialogWrapper />
+    <h3>
+      <a href="https://forms.gle/L1vSvZaWFRmz6Vug7">Fill out this Survey To help out!</a>
+    </h3>
     <div>
       <input type="checkbox" id="debug_checkbox" v-model="debug_mode" />
       <label for="debug_checkbox">Debug Mode: {{ debug_mode }}</label>
