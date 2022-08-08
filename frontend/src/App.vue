@@ -18,7 +18,7 @@
       </h2>
     </div>
     <DialogWrapper />
-    <div v-if="dev_possible">
+    <div>
       <input type="checkbox" id="debug_checkbox" v-model="debug_mode" />
       <label for="debug_checkbox">Debug Mode: {{ debug_mode }}</label>
     </div>
