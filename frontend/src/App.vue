@@ -1,13 +1,32 @@
 <template>
   <div>
     <h2>🗺️ KIRYU EVERYWHERE! 🗺️</h2>
-    <div v-if="location_number <= location_count">
+    <div v-if="location_number <= location_count" :key="location_number">
       <h3>LOCATION #{{ location_number }}</h3>
       <p>{{ getGameName().toUpperCase() }}</p>
-      <Game :map="getMap()" :number="location_number" :threshold="getThreshold()" :target="getTarget()"
-        :debug_mode="debug_mode" :on_complete="onComplete()" />
+      <Game
+        :map="getMap()"
+        :number="location_number"
+        :threshold="getThreshold()"
+        :target="getTarget()"
+        :debug_mode="debug_mode"
+        :on_complete="onComplete()"
+      />
       <br />
       <button @click="openStats()" class="stats">📈Stats📈</button>
+      <h3>
+        <a href="https://forms.gle/L1vSvZaWFRmz6Vug7"
+          >Fill out this Survey To help out!</a
+        >
+      </h3>
+      <div class="location_select">
+        <h2>Location Selector</h2>
+        <select v-model="location_number">
+          <option v-for="i in max_location_number" :key="i" :value="i">
+            #{{ i }}
+          </option>
+        </select>
+      </div>
       <h3>THIS HAS NOTHING TO DO WITH SEGA</h3>
       <h3>MADE BY <a href="paul@sarda.dev">paul@sarda.dev</a></h3>
     </div>
@@ -18,10 +37,7 @@
       </h2>
     </div>
     <DialogWrapper />
-    <h3>
-      <a href="https://forms.gle/L1vSvZaWFRmz6Vug7">Fill out this Survey To help out!</a>
-    </h3>
-    <div>
+    <div v-if="dev_possible">
       <input type="checkbox" id="debug_checkbox" v-model="debug_mode" />
       <label for="debug_checkbox">Debug Mode: {{ debug_mode }}</label>
     </div>
@@ -56,6 +72,7 @@ export default defineComponent({
       show: false,
       debug_mode: false,
       current_cookie: getGuesses(document),
+      max_location_number: location_number,
       location_number: location_number,
       location_count: Object.keys(games).length,
       dev_possible: process.env.BASE_URL == "/",
@@ -88,7 +105,7 @@ export default defineComponent({
       return map_info[games[this.location_number].map].threshold;
     },
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -135,5 +152,16 @@ body {
 .stats:hover {
   background-color: lightgray;
   cursor: pointer;
+}
+
+.location_select h2 {
+  margin-bottom: 0px;
+}
+
+.location_select select {
+  font-family: "Nanum Brush Script", cursive;
+  font-size: 20px;
+  background-color: #868686;
+  color: white;
 }
 </style>
