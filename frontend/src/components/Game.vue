@@ -1,19 +1,34 @@
 <template>
   <div class="game">
-    <img :src="`${public_path}images/games/${number}/${active_pic}.webp`" class="game_image" />
+    <img
+      :src="`${public_path}images/games/${number}/${active_pic}.webp`"
+      class="game_image"
+    />
     <br />
     <div class="buttons">
       <div>
-        <button @click="showLocationImage(1)" :class="getClassForLocationImage(1)">
+        <button
+          @click="showLocationImage(1)"
+          :class="getClassForLocationImage(1)"
+        >
           1
         </button>
-        <button @click="showLocationImage(2)" :class="getClassForLocationImage(2)">
+        <button
+          @click="showLocationImage(2)"
+          :class="getClassForLocationImage(2)"
+        >
           2
         </button>
-        <button @click="showLocationImage(3)" :class="getClassForLocationImage(3)">
+        <button
+          @click="showLocationImage(3)"
+          :class="getClassForLocationImage(3)"
+        >
           3
         </button>
-        <button @click="showLocationImage(4)" :class="getClassForLocationImage(4)">
+        <button
+          @click="showLocationImage(4)"
+          :class="getClassForLocationImage(4)"
+        >
           4
         </button>
       </div>
@@ -35,7 +50,10 @@
     <canvas id="canvas" v-on:click="canvasClick" />
     <br />
     <div v-if="this.getState() == `playing`">
-      <button :class="this.selected_x == null ? `submit disabled` : `submit`" @click="submitButton">
+      <button
+        :class="this.selected_x == null ? `submit disabled` : `submit`"
+        @click="submitButton"
+      >
         SUBMIT
       </button>
     </div>
@@ -43,7 +61,11 @@
       <button @click="shareClick" class="submit">{{ this.share_text }}</button>
     </div>
     <img id="map" :src="`${public_path}maps/${map}.webp`" hidden="true" />
-    <img id="target_icon" :src="`${this.public_path}images/blad_kiryu.webp`" hidden="true" />
+    <img
+      id="target_icon"
+      :src="`${this.public_path}images/blad_kiryu.webp`"
+      hidden="true"
+    />
     <div v-if="debug_mode">
       <p>DEBUG X:{{ this.click_debug_x }}</p>
       <p>DEBUG Y:{{ this.click_debug_y }}</p>
@@ -312,8 +334,8 @@ const pic_count = 4;
 
       if (!this.canvas_init) {
         this.canvas_init = true;
-        const canvas_width = window.innerWidth * 0.8;
-        const canvas_height = window.innerHeight * 0.5;
+        const canvas_width = window.innerWidth * 0.9;
+        const canvas_height = window.innerHeight * 0.6;
         ctx.canvas.width = canvas_width;
         ctx.canvas.height = canvas_height;
       }
