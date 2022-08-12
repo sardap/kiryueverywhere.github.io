@@ -89,5 +89,10 @@ export const map_info: Record<string, mapInfo> = {
     threshold: 7,
     game_name: "Yakuza 6",
     plain_name: "Yakuza 5 Onomichi",
-  }
+  },
+  yakuza_6_kamuro_map: {
+    threshold: 7,
+    game_name: "Yakuza 6",
+    plain_name: "Yakuza 6 Kamurocho",
+  },
 };
