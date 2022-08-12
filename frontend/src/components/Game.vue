@@ -77,6 +77,7 @@
 import { Options, Vue } from "vue-class-component";
 import { position } from "../games";
 import { FinalGuess, saveGuess, getGuessesForLocation } from "../history";
+import mix from "mix-css-color";
 
 const pic_count = 4;
 
@@ -344,6 +345,7 @@ const pic_count = 4;
 
       const guesses = getGuessesForLocation(document, this.number);
       const guess_size = ctx.canvas.height * 0.05;
+      let i = 0;
       for (const guess of guesses) {
         const pos = this.percentAsPos(guess.x_per, guess.y_per);
         const dist_x = Math.abs(guess.x_per - this.target.x);
@@ -354,10 +356,15 @@ const pic_count = 4;
           colour = "green";
         } else {
           const dist = dist_x + dist_y;
-          if (dist < this.threshold * 3.5) {
-            colour = "#FF0000";
+          console.log(`${i} dist:${dist} threshold:${this.threshold}`);
+          if (dist < this.threshold * 5) {
+            colour = mix(
+              "red",
+              "yellow",
+              ((dist - this.threshold) / (this.threshold * 4)) * 100
+            ).hex;
           } else {
-            colour = "#8B0000";
+            colour = "red";
           }
         }
         ctx.strokeStyle = colour;
@@ -368,6 +375,7 @@ const pic_count = 4;
           guess_size
         );
         ctx.stroke();
+        i++;
       }
 
       if (this.selected_x && this.selected_y) {
