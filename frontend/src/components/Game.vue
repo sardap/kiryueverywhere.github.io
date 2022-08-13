@@ -357,11 +357,11 @@ const pic_count = 4;
         } else {
           const dist = dist_x + dist_y;
           console.log(`${i} dist:${dist} threshold:${this.threshold}`);
-          if (dist < this.threshold * 5) {
+          if (dist < this.threshold * 6) {
             colour = mix(
               "red",
               "yellow",
-              ((dist - this.threshold) / (this.threshold * 4)) * 100
+              ((dist - this.threshold) / (this.threshold * 6)) * 100
             ).hex;
           } else {
             colour = "red";
