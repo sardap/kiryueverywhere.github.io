@@ -104,5 +104,29 @@ export const games: Record<number, gameInfo> = {
   24: {
     map: "yakuza_0_kamuro_map",
     target: { x: 11.149825783972126, y: 3.720508166969147 },
+  },
+  25: {
+    map: "yakuza_3_kamuro_map",
+    target: { x: 27.609549956933677, y: 25.17361111111111 },
+  },
+  26: {
+    map: "yakuza_kiwami_2_osaka_map",
+    target: { x: -21.836649719495092, y: 42.1875 },
+  },
+  27: {
+    map: "yakuza_0_osaka_map",
+    target: { x: -13.119911010232022, y: 4.861111111111112 },
+  },
+  28: {
+    map: "yakuza_4_kamuro_rooftops_map",
+    target: { x: 22.252283558379666, y: 31.59722222222222 },
+  },
+  29: {
+    map: "yakuza_3_kamuro_map",
+    target: { x: 38.42168140860001, y: 6.25 },
+  },
+  30: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: 16.44291692740926, y: 13.88888888888889 },
   }
 };
