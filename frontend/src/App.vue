@@ -46,7 +46,7 @@
       <input v-model="location_number" />
       <br />
       <br />
-      <button @click="resetCookie()">Reset Cookie</button>
+      <button @click="resetGuessesCookie()">Reset Cookie</button>
       <p>Cookie: {{ current_cookie }}</p>
     </div>
   </div>
@@ -56,7 +56,7 @@
 import Game from "./components/Game.vue";
 import { games } from "./games";
 import { map_info } from "./maps";
-import { getGuesses, resetCookie } from "./history";
+import { getGuesses, resetGuessesCookie } from "./history";
 import { DialogWrapper } from "vue3-promise-dialog";
 import { confirm, getLocationNumber } from "./misc";
 import { defineComponent } from "vue";
@@ -89,8 +89,8 @@ export default defineComponent({
     onComplete() {
       console.log("Jobs done");
     },
-    resetCookie() {
-      resetCookie(document);
+    resetGuessesCookie() {
+      resetGuessesCookie(document);
     },
     getMap() {
       return games[this.location_number].map;

@@ -225,8 +225,8 @@ const pic_count = 4;
       let text = `#KIRYU_EVERYWHERE #${this.number} 🗺️\n`;
       const guesses = getGuessesForLocation(document, this.number);
       for (let i = 0; i < guesses.length; i++) {
-        const dist_x = Math.abs(guesses[i].x_per - this.target.x);
-        const dist_y = Math.abs(guesses[i].y_per - this.target.y);
+        const dist_x = Math.abs(guesses[i].x - this.target.x);
+        const dist_y = Math.abs(guesses[i].y - this.target.y);
         let square: string;
         if (guesses[i].final_guess == FinalGuess.Win) {
           square = "🟢";
@@ -271,13 +271,13 @@ const pic_count = 4;
         this.number
       ).length;
 
-      let final_guess = FinalGuess.NotFinal;
+      let f = FinalGuess.NotFinal;
       if (this.correctGuess({ x: this.selected_x, y: this.selected_y })) {
         console.log("win!");
-        final_guess = FinalGuess.Win;
+        f = FinalGuess.Win;
       } else if (this.guessesLeftCount() - 1 == 0) {
         console.log("lose!");
-        final_guess = FinalGuess.Lose;
+        f = FinalGuess.Lose;
       } else {
         console.log(`unlock next! ${guesses_length}`);
         this.unlockNext();
@@ -286,13 +286,7 @@ const pic_count = 4;
         );
       }
 
-      saveGuess(
-        document,
-        this.number,
-        percent_pos.x,
-        percent_pos.y,
-        final_guess
-      );
+      saveGuess(document, this.number, percent_pos.x, percent_pos.y, f);
 
       this.selected_x = null;
       this.selected_y = null;
@@ -347,16 +341,15 @@ const pic_count = 4;
       const guess_size = ctx.canvas.height * 0.05;
       let i = 0;
       for (const guess of guesses) {
-        const pos = this.percentAsPos(guess.x_per, guess.y_per);
-        const dist_x = Math.abs(guess.x_per - this.target.x);
-        const dist_y = Math.abs(guess.y_per - this.target.y);
+        const pos = this.percentAsPos(guess.x, guess.y);
+        const dist_x = Math.abs(guess.x - this.target.x);
+        const dist_y = Math.abs(guess.y - this.target.y);
         ctx.beginPath();
         let colour = "";
         if (dist_x <= this.threshold && dist_y <= this.threshold) {
           colour = "green";
         } else {
           const dist = dist_x + dist_y;
-          console.log(`${i} dist:${dist} threshold:${this.threshold}`);
           if (dist < this.threshold * 6) {
             colour = mix(
               "red",

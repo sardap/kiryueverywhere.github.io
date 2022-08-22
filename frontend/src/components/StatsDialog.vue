@@ -8,10 +8,20 @@
       <p>Current Streak:{{ current_streak }}</p>
       <hr />
       <h3>Map breakdown</h3>
-      <div v-for="item in getMapBreakdown()" :key="item.name" class="map_breakdown_entry">
-        <p><b>{{ item.name }}</b></p>
-        <p>{{ (item.tally.correct / (item.tally.incorrect + item.tally.correct)) * 100 }}%,
-          🟢{{ item.tally.correct }} 🔴{{ item.tally.incorrect }}</p>
+      <div
+        v-for="item in getMapBreakdown()"
+        :key="item.name"
+        class="map_breakdown_entry"
+      >
+        <p>
+          <b>{{ item.name }}</b>
+        </p>
+        <p>
+          {{
+            (item.tally.correct / (item.tally.incorrect + item.tally.correct)) *
+            100
+          }}%, 🟢{{ item.tally.correct }} 🔴{{ item.tally.incorrect }}
+        </p>
       </div>
       <button @click="closeDialog()" class="btn">Okay</button>
     </div>
@@ -23,17 +33,17 @@ import { defineComponent } from "vue";
 import { closeDialog } from "vue3-promise-dialog";
 import { FinalGuess, getGuesses, guessHistoryEntry } from "../history";
 import { getLocationNumber } from "../misc";
-import { games } from '../games'
-import { map_info } from '../maps'
+import { games } from "../games";
+import { map_info } from "../maps";
 
 interface MapGuessTally {
-  correct: number,
-  incorrect: number,
+  correct: number;
+  incorrect: number;
 }
 
 interface MapBreakdownEntry {
-  tally: MapGuessTally,
-  name: string,
+  tally: MapGuessTally;
+  name: string;
 }
 
 interface Stats {
@@ -43,7 +53,7 @@ interface Stats {
 
 function getStats(guesses: Record<number, guessHistoryEntry[]>): Stats {
   const game_count = getLocationNumber();
-  const locations_count = new Map<string, MapGuessTally>()
+  const locations_count = new Map<string, MapGuessTally>();
   let first_guess_number = -1;
   for (let i = 0; i <= game_count; i++) {
     if (first_guess_number == -1 && i in guesses) {
@@ -60,9 +70,9 @@ function getStats(guesses: Record<number, guessHistoryEntry[]>): Stats {
       const guess = guesses[i];
       for (let j = 0; j < guess.length; j++) {
         if (guess[j].final_guess == FinalGuess.Win) {
-          location_count!.correct++
+          location_count!.correct++;
         } else if (guess[j].final_guess == FinalGuess.Lose) {
-          location_count!.incorrect++
+          location_count!.incorrect++;
         }
       }
     }
@@ -123,7 +133,7 @@ export default defineComponent({
       let correct_count = 0;
       let incorrect_count = 0;
       for (const [map, tally] of this.stats.location_count) {
-        correct_count += tally.correct
+        correct_count += tally.correct;
         incorrect_count += tally.incorrect;
       }
 
@@ -132,7 +142,7 @@ export default defineComponent({
     getMapBreakdown() {
       const result: MapBreakdownEntry[] = [];
       for (const [map, tally] of this.stats.location_count) {
-        result.push({ name: map_info[map].plain_name, tally: tally })
+        result.push({ name: map_info[map].plain_name, tally: tally });
       }
       return result;
     },
@@ -198,6 +208,5 @@ button {
 button:hover {
   background-color: lightgray;
   cursor: pointer;
-
 }
 </style>
