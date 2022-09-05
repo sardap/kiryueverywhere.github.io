@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <img
-      :src="`${public_path}images/games/${number}/${active_pic}.webp`"
+      :src="`${public_path}games/${number}/${active_pic}.webp`"
       class="game_image"
     />
     <br />
