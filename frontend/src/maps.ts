@@ -71,17 +71,17 @@ export const map_info: Record<string, mapInfo> = {
     plain_name: "Yakuza 5 Sotenbori",
   },
   yakuza_5_fukuoka_map: {
-    threshold: 5,
+    threshold: 8,
     game_name: "Yakuza 5",
     plain_name: "Yakuza 5 Fukuoka",
   },
   yakuza_5_sapporo_map: {
-    threshold: 5,
+    threshold: 8,
     game_name: "Yakuza 5",
     plain_name: "Yakuza 5 Sapporo",
   },
   yakuza_5_nagoya_map: {
-    threshold: 5,
+    threshold: 8,
     game_name: "Yakuza 5",
     plain_name: "Yakuza 5 Nagoya",
   },
