@@ -70,7 +70,7 @@ export default defineComponent({
     const location_number = getLocationNumber();
     return {
       show: false,
-      debug_mode: false,
+      debug_mode: process.env.BASE_URL == "/",
       current_cookie: getGuesses(document),
       max_location_number: location_number,
       location_number: location_number,
