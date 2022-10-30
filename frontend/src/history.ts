@@ -112,6 +112,11 @@ export function saveGuesses(document: Document, current_cookie: guessCookie): vo
   let str = JSON.stringify(reduced);
   str = str.replaceAll(' ', '');
   str = `{${str}}`
+  if (str.length > 4000) {
+    resetCookie(document, guesses_cookie_key);
+    return;
+  }
+
   document.cookie = guesses_cookie_key + "=" + str + ";" + expires;
 }
 
