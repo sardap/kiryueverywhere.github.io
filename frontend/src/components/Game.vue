@@ -67,8 +67,8 @@
       hidden="true"
     />
     <div v-if="debug_mode">
-      <p>DEBUG X:{{ this.click_debug_x }}</p>
-      <p>DEBUG Y:{{ this.click_debug_y }}</p>
+      <p>DEBUG X: {{ this.click_debug_x }}</p>
+      <p>DEBUG Y: {{ this.click_debug_y }}</p>
     </div>
   </div>
 </template>
@@ -216,8 +216,8 @@ const pic_count = 4;
       const dist_y = Math.abs(percent_pos.y - this.target.y);
 
       const image = document.getElementById("map") as HTMLImageElement;
-      this.click_debug_x = `px:${percent_pos.x} sx:${this.selected_x} cx:${this.center_x} iw:${image.width}`;
-      this.click_debug_y = `py:${percent_pos.y} sy:${this.selected_y} cy:${this.center_y} ih:${image.height}`;
+      this.click_debug_x = `px: ${percent_pos.x}`;
+      this.click_debug_y = `py: ${percent_pos.y}`;
 
       return dist_x <= this.threshold && dist_y <= this.threshold;
     },
