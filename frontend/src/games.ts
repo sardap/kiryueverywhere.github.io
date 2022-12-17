@@ -545,5 +545,75 @@ export const games: Record<number, gameInfo> = {
   134: {
     map: "yakuza_0_kamuro_map",
     target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  // Duplicate Start
+  135: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  136: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  137: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  138: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  139: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  140: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  141: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 5.878999049730757, y: -23.636363636363637 },
+  },
+  // Duplicate End
+  142: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: -12.127828503374355, y: -15.272727272727273 },
+  },
+  143: {
+    map: "yakuza_5_nagoya_map",
+    target: { x: 0.9280742459396751, y: 12.992654589642727 },
+  },
+  144: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -39.61974685931129, y: 12.545454545454545 },
+  },
+  145: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 16.265230704255092, y: 30.545454545454547 },
+  },
+  146: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: -4.262430310615542, y: 23.272727272727273 },
+  },
+  147: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: 0.6566808871709053, y: -32.36363636363636 },
+  },
+  148: {
+    map: "yakuza_kiwami_map",
+    target: { x: -4.691799820291441, y: 31.272727272727273 },
+  },
+  149: {
+    map: "yakuza_5_osaka_map",
+    target: { x: -23.005555192471082, y: 29.63636363636364 },
+  },
+  150: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: 11.082318807600409, y: 16.18181818181818 },
+  },
+  151: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -33.70626121845634, y: -5.454545454545454 },
   }
 };
