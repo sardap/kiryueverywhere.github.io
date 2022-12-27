@@ -69,6 +69,7 @@
     <div v-if="debug_mode">
       <p>DEBUG X: {{ this.click_debug_x }}</p>
       <p>DEBUG Y: {{ this.click_debug_y }}</p>
+      <button @click="copyLocationClick" class="submit">Copy</button>
     </div>
   </div>
 </template>
@@ -248,6 +249,12 @@ const pic_count = 4;
         this.share_text = "SHARE!";
         clearInterval(share_text_timer);
       }, 250);
+    },
+    copyLocationClick() {
+      let text = `target: { x: ${this.click_debug_x.substring(
+        3
+      )}, y: ${this.click_debug_y.substring(3)} },`;
+      navigator.clipboard.writeText(text);
     },
     submitButton() {
       if (this.selected_x == null || this.selected_y == null) {

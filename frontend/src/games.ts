@@ -623,5 +623,79 @@ export const games: Record<number, gameInfo> = {
   153: {
     map: "yakuza_5_sapporo_map",
     target: { x: 15.58187958802021, y: -27.81818181818182 },
+  },
+  154: {
+    map: "yakuza_kiwami_2_osaka_map",
+    target: {
+      x: 15.350376131582303, y: - 27.090909090909093
+    },
+  },
+  155: {
+    map: "yakuza_0_osaka_map",
+    target: { x: -41.699681641315884, y: 5.2727272727272725 },
+  },
+  156: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: -44.87296546248511, y: -16.545454545454547 },
+  },
+  157: {
+    map: "yakuza_5_osaka_map",
+    target: { x: -26.360531991373108, y: 1.4545454545454546 },
+  },
+  158: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -20.576496674057648, y: 44.90909090909091 },
+  },
+  159: {
+    map: "yakuza_kiwami_map",
+    target: { x: -20.13564089541743, y: 15.818181818181817 },
+  },
+  160: {
+    map: "yakuza_5_nagoya_map",
+    target: { x: -23.781902552204176, y: 14.007705729458564 },
+  },
+  161: {
+    map: "yakuza_kiwami_2_osaka_map",
+    target: { x: 3.759275787326278, y: 29.09090909090909 },
+  },
+  162: {
+    map: "yakuza_5_osaka_map",
+    target: { x: -19.171295993725902, y: -30 },
+  },
+  163: {
+    map: "yakuza_kiwami_map",
+    target: { x: -4.691799820291441, y: 38.18181818181819 },
+  },
+  164: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: -6.137899647286381, y: -28.363636363636363 },
+  },
+  165: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: 38.04789968652037, y: 19.454545454545453 },
+  },
+  166: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -32.92239467849224, y: -14.909090909090908 },
+  },
+  167: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: -19.095687791557626, y: -10.727272727272727 },
+  },
+  168: {
+    map: "yakuza_6_kamuro_map",
+    target: { x: -15.687783315667215, y: 12.545454545454545 },
+  },
+  169: {
+    map: "yakuza_kiwami_map",
+    target: { x: 36.75243192561628, y: -14.000000000000002 },
+  },
+  170: {
+    map: "yakuza_0_osaka_map",
+    target: { x: 2.236764532484377, y: -30 },
+  },
+  171: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: -19.96840125391849, y: 16.727272727272727 },
   }
 };
