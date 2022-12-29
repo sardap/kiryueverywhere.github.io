@@ -697,5 +697,61 @@ export const games: Record<number, gameInfo> = {
   171: {
     map: "yakuza_5_fukuoka_map",
     target: { x: -19.96840125391849, y: 16.727272727272727 },
+  },
+  172: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -3.502298064911495, y: 29.454545454545457 },
+  },
+  173: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: -16.538229605188302, y: -14.000000000000002 },
+  },
+  174: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: 34.00025078369905, y: -6 },
+  },
+  175: {
+    map: "yakuza_0_osaka_map",
+    target: { x: 6.550524702275676, y: -30.363636363636363 },
+  },
+  176: {
+    map: "yakuza_kiwami_2_osaka_map",
+    target: { x: -33.05029963024353, y: 5.818181818181818 },
+  },
+  177: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: -36.5856159851793, y: -9.272727272727273 },
+  },
+  178: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -33.314327948474286, y: -10 },
+  },
+  179: {
+    map: "yakuza_kiwami_map",
+    target: { x: 36.75243192561628, y: 18.72727272727273 },
+  },
+  180: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: 10.741324382751166, y: 35.090909090909086 },
+  },
+  181: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -15.322554033987789, y: 27.090909090909093 },
+  },
+  182: {
+    map: "yakuza_6_kamuro_map",
+    target: { x: 5.115581515978439, y: 0.9090909090909091 },
+  },
+  183: {
+    map: "yakuza_kiwami_map",
+    target: { x: -20.33113255459624, y: 21.09090909090909 },
+  },
+  184: {
+    map: "yakuza_5_nagoya_map",
+    target: { x: -18.793503480278424, y: -34.30872852577532 },
+  },
+  185: {
+    map: "yakuza_6_kamuro_map",
+    target: { x: 18.075054689790484, y: 13.454545454545455 },
   }
 };
