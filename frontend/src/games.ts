@@ -1402,5 +1402,153 @@ export const games: Record<number, gameInfo> = {
   347: {
     map: "yakuza_5_osaka_map",
     target: { x: 9.089838617714866, y: -30.03629764065336 },
+  },
+  348: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: 24.45778748180495, y: 15.090909090909092 },
+  },
+  349: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: 4.664917520305914, y: -38 },
+  },
+  350: {
+    map: "yakuza_dead_souls_kamuro_streets_map",
+    target: { x: 30.52170173349213, y: 31.636363636363633 },
+  },
+  351: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: 17.989612280005293, y: 6.909090909090909 },
+  },
+  352: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: 12.142946708463949, y: 28.363636363636363 },
+  },
+  353: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -20.56019203394088, y: 40.36363636363636 },
+  },
+  354: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: 27.799490890234992, y: 19.818181818181817 },
+  },
+  355: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: 10.190265019533312, y: -1.090909090909091 },
+  },
+  356: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: -20.508087774294665, y: -15.272727272727273 },
+  },
+  357: {
+    map: "yakuza_kiwami_map",
+    target: { x: -10.947532914013362, y: -14.545454545454545 },
+  },
+  358: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -23.640511938152592, y: 15.272727272727273 },
+  },
+  359: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -20.138213873241096, y: -0.36363636363636365 },
+  },
+  360: {
+    map: "yakuza_0_osaka_map",
+    target: { x: 35.628463624572575, y: 5.090909090909091 },
+  },
+  361: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: -23.476363636363633, y: -39.63636363636363 },
+  },
+  362: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -34.58519339100101, y: -14.909090909090908 },
+  },
+  363: {
+    map: "yakuza_0_osaka_map",
+    target: { x: -33.71123688244311, y: 42.18181818181818 },
+  },
+  364: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: 26.78008206101543, y: -18.545454545454547 },
+  },
+  365: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: 33.70961887477314, y: 10 },
+  },
+  366: {
+    map: "yakuza_5_nagoya_map",
+    target: { x: 0.8120649651972157, y: -36.74485126133333 },
+  },
+  367: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: 12.734219928543073, y: 26.181818181818183 },
+  },
+  368: {
+    map: "yakuza_0_osaka_map",
+    target: { x: -24.284872066973236, y: -19.090909090909093 },
+  },
+  369: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: 21.942389817735226, y: -25.09090909090909 },
+  },
+  370: {
+    map: "yakuza_kiwami_map",
+    target: { x: 13.488924483337891, y: 18.545454545454547 },
+  },
+  371: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: 29.10678840809845, y: -8.727272727272728 },
+  },
+  372: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: 19.86909314204371, y: -14.000000000000002 },
+  },
+  373: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -20.576496674057648, y: 26.181818181818183 },
+  },
+  374: {
+    map: "yakuza_5_osaka_map",
+    target: { x: -36.904744787922354, y: 5.454545454545454 },
+  },
+  375: {
+    map: "yakuza_6_kamuro_map",
+    target: { x: -5.627139667576284, y: -14.363636363636365 },
+  },
+  376: {
+    map: "yakuza_kiwami_2_kamuro_map",
+    target: { x: -12.277395638348255, y: 20.545454545454543 },
+  },
+  377: {
+    map: "yakuza_dead_souls_kamuro_streets_map",
+    target: { x: 27.08548365753606, y: 27.636363636363637 },
+  },
+  378: {
+    map: "yakuza_kiwami_map",
+    target: { x: -27.173340625854593, y: -15.454545454545453 },
+  },
+  379: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: 34.00025078369905, y: -19.272727272727273 },
+  },
+  380: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: -28.90465793304221, y: 23.454545454545457 },
+  },
+  381: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -7.602087810868897, y: 5.2727272727272725 },
+  },
+  382: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -22.5361630239679, y: -14.909090909090908 },
+  },
+  383: {
+    map: "yakuza_5_sapporo_map",
+    target: { x: 0.5771066514081559, y: 47.63636363636364 },
+  },
+  384: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: 26.434532615066846, y: -24.363636363636363 },
   }
 };
