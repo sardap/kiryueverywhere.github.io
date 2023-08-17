@@ -1550,5 +1550,33 @@ export const games: Record<number, gameInfo> = {
   384: {
     map: "yakuza_7_yokohama_map",
     target: { x: 26.434532615066846, y: -24.363636363636363 },
+  },
+  385: {
+    map: "yakuza_6_kamuro_map",
+    target: { x: 7.843891657833607, y: 31.09090909090909 },
+  },
+  386: {
+    map: "yakuza_0_kamuro_map",
+    target: { x: -13.52169781438074, y: 45.45454545454545 },
+  },
+  387: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: -4.317492163009404, y: 23.09090909090909 },
+  },
+  388: {
+    map: "yakuza_kiwami_map",
+    target: { x: -18.767199281165762, y: -28.909090909090907 },
+  },
+  389: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -40.083735730036004, y: 12.363636363636363 },
+  },
+  390: {
+    map: "yakuza_6_onomichi_map",
+    target: { x: -3.283404435854527, y: -0.5454545454545455 },
+  },
+  391: {
+    map: "yakuza_kiwami_map",
+    target: { x: -6.646716412079541, y: -35.81818181818181 },
   }
 };
