@@ -1582,5 +1582,25 @@ export const games: Record<number, gameInfo> = {
   392: {
     map: "yakuza_dead_souls_kamuro_streets_map",
     target: { x: -3.840479026068546, y: 26.727272727272727 },
+  },
+  393: {
+    map: "yakuza_dead_souls_kamuro_streets_map",
+    target: { x: 11.723567553261876, y: 46.909090909090914 },
+  },
+  394: {
+    map: "yakuza_0_osaka_map",
+    target: { x: -21.40903195377904, y: 29.272727272727273 },
+  },
+  395: {
+    map: "yakuza_6_kamuro_map",
+    target: { x: 4.774542748246543, y: -6.545454545454546 },
+  },
+  396: {
+    map: "yakuza_5_fukuoka_map",
+    target: { x: -28.873228840125385, y: -24.90909090909091 },
+  },
+  397: {
+    map: "yakuza_4_kamuro_streets_map",
+    target: { x: 33.95791980944819, y: 0.36363636363636365 },
   }
 };
