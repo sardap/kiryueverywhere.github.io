@@ -4,20 +4,11 @@
     <div v-if="location_number <= location_count" :key="location_number">
       <h3>LOCATION #{{ location_number }}</h3>
       <p>{{ getGameName().toUpperCase() }}</p>
-      <Game
-        :map="getMap()"
-        :number="location_number"
-        :threshold="getThreshold()"
-        :target="getTarget()"
-        :debug_mode="debug_mode"
-        :on_complete="onComplete()"
-      />
+      <Game :map="getMap()" :number="location_number" :threshold="getThreshold()" :target="getTarget()"
+        :debug_mode="debug_mode" :on_complete="onComplete()" />
       <br />
-      <button @click="openStats()" class="stats">📈Stats📈</button>
       <h3>
-        <a href="https://forms.gle/L1vSvZaWFRmz6Vug7"
-          >Fill out this Survey To help out!</a
-        >
+        <a href="https://forms.gle/L1vSvZaWFRmz6Vug7">Fill out this Survey To help out!</a>
       </h3>
       <div class="location_select">
         <h2>Location Selector</h2>
