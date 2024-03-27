@@ -2438,5 +2438,17 @@ export const games: Record<number, gameInfo> = {
   606: {
     map: "yakuza_0_osaka_map",
     target: { x: -33.94032349933777, y: 21.252204585537918 },
+  },
+  607: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -36.973790716498726, y: 27.636363636363637 },
+  },
+  608: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -44.74865325034192, y: 4 },
+  },
+  609: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -26.434532615066846, y: -22.727272727272727 },
   }
 };
