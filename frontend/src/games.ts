@@ -2450,5 +2450,37 @@ export const games: Record<number, gameInfo> = {
   609: {
     map: "yakuza_7_yokohama_map",
     target: { x: -26.434532615066846, y: -22.727272727272727 },
+  },
+  610: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -3.9738186284087416, y: 28.363636363636363 },
+  },
+  611: {
+    map: "ishin_kyoto_map",
+    target: { x: -3.2522807142096486, y: -11.818181818181818 },
+  },
+  612: {
+    map: "yakuza_7_yokohama_map",
+    target: { x: -34.20939514891004, y: 9.636363636363637 },
+  },
+  613: {
+    map: "yakuza_0_osaka_map",
+    target: { x: 4.633297960146209, y: 27.27272727272727 },
+  },
+  614: {
+    map: "ishin_kyoto_map",
+    target: { x: -0.8672748571225729, y: -0.18181818181818182 },
+  },
+  615: {
+    map: "yakuza_0_osaka_map",
+    target: { x: 23.166489800731046, y: 5.2727272727272725 },
+  },
+  616: {
+    map: "yakuza_0_osaka_map",
+    target: { x: -14.53896946114845, y: -18.90909090909091 },
+  },
+  617: {
+    map: "ishin_kyoto_map",
+    target: { x: 7.805473714103156, y: -19.636363636363637 },
   }
 };
