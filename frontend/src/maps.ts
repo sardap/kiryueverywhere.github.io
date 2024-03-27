@@ -115,4 +115,9 @@ export const map_info: Record<string, mapInfo> = {
     game_name: "Ishin",
     plain_name: "Ishin Kyoto",
   },
+  kabukicho_map: {
+    threshold: 5,
+    game_name: "Real Life",
+    plain_name: "Kabukicho",
+  }
 };
