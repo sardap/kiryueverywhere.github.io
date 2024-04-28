@@ -11,7 +11,7 @@ function seededRandom(seed: number, min = 0, max = 1): number {
     // Define the parameters for the LCG
     const modulus = 2 ** 31 - 1;
     const multiplier = 48271;
-    const increment = 0;
+    const increment = 215367;
 
     // Update the seed and calculate the random number
     seed = (multiplier * seed + increment) % modulus;
