@@ -10,14 +10,14 @@
       <h3>
         <a href="https://forms.gle/L1vSvZaWFRmz6Vug7">Fill out this Survey To help out!</a>
       </h3>
-      <div class="location_select">
+      <!-- <div class="location_select">
         <h2>Location Selector</h2>
         <select v-model="location_number">
           <option v-for="i in max_location_number" :key="i" :value="i">
             #{{ i }}
           </option>
         </select>
-      </div>
+      </div> -->
       <h3>THIS HAS NOTHING TO DO WITH SEGA</h3>
       <h3>MADE BY <a href="paul@sarda.dev">paul@sarda.dev</a></h3>
     </div>
