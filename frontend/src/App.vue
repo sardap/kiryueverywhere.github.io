@@ -2,7 +2,7 @@
   <div>
     <h2>🗺️ KIRYU EVERYWHERE! 🗺️</h2>
     <div v-if="location_number <= location_count" :key="location_number">
-      <h3>LOCATION #{{ location_number }}</h3>
+      <h3>LOCATION #{{ getDayNumber() }}</h3>
       <p>{{ getGameName().toUpperCase() }}</p>
       <Game :map="getMap()" :number="location_number" :threshold="getThreshold()" :target="getTarget()"
         :debug_mode="debug_mode" :on_complete="onComplete()" />
@@ -49,7 +49,7 @@ import { games } from "./games";
 import { map_info } from "./maps";
 import { getGuesses, resetGuessesCookie } from "./history";
 import { DialogWrapper } from "vue3-promise-dialog";
-import { confirm, getLocationNumber } from "./misc";
+import { confirm, getLocationNumber, getDayNumber } from "./misc";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -94,6 +94,9 @@ export default defineComponent({
     },
     getThreshold() {
       return map_info[games[this.location_number].map].threshold;
+    },
+    getDayNumber() {
+      return getDayNumber();
     },
   },
 });
