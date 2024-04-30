@@ -8,17 +8,12 @@ export async function confirm() {
 const first_date = new Date(2022, 6, 28, 0, 0, 0);
 
 function seededRandom(seed: number, min = 0, max = 1): number {
-    // Define the parameters for the LCG
-    const modulus = 2 ** 31 - 1;
-    const multiplier = 48271;
-    const increment = 215367;
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    const num = (((t ^ t >>> 14) >>> 0) / 4294967296) * 1000000000;
 
-    // Update the seed and calculate the random number
-    seed = (multiplier * seed + increment) % modulus;
-    const result = seed / modulus;
-
-    // Scale the result to the requested range
-    return result * (max - min) + min;
+    return Math.floor(num % (max - min) + min);
 }
 
 export function getDayNumber() {
